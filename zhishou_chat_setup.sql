@@ -119,6 +119,7 @@ CREATE TABLE if NOT EXISTS `ip_id`(
   CONSTRAINT `fk_ip_id_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 -- 创建数据库用户并授权
+ALTER TABLE users ADD COLUMN `permission` ENUM('teacher', 'student') NOT NULL DEFAULT 'student' AFTER user_id;
 CREATE USER IF NOT EXISTS 'chat_app'@'localhost' IDENTIFIED BY 'zhishou_chat';
 GRANT ALL PRIVILEGES ON zhishou_chat_app.* TO 'chat_app'@'localhost';
 FLUSH PRIVILEGES;
